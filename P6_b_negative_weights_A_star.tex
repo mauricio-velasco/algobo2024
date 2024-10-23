@@ -1,0 +1,131 @@
+
+\documentclass[12pt, a4paper]{article}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=cyan,
+}
+\urlstyle{same}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+\newtheorem{theorem}{Teorema.}
+\newtheorem{lemma}[theorem]{Lema.}
+\newtheorem{corollary}[theorem]{Corolario.}
+\newtheorem{definition}[theorem]{Definici\'on:}
+\newtheorem{example}[theorem]{Ejemplo:}
+\newtheorem{problema}[theorem]{Problema:}
+\newtheorem{remark}[theorem]{Observaci\'on:}
+
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+%\usetheme{default}
+
+\newcommand{\pp}{\mathbb{P}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+
+\usepackage{tikz, tikz-3dplot}
+
+\definecolor{cof}{RGB}{219,144,71}
+\definecolor{pur}{RGB}{186,146,162}
+\definecolor{greeo}{RGB}{91,173,69}
+\definecolor{greet}{RGB}{52,111,72}
+
+\date{}
+
+\begin{document}
+\title{Pr\'actico ALGABO: Más programación dinámica y el algoritmo $A^*$.}
+\maketitle{}
+\begin{enumerate}
+\item ({\it Floyd Warshall}). 
+\begin{enumerate}
+\item Describa con palabras qué problema resuelve el algoritmo de Floyd Warshall.
+
+\item Encuentre una recursión de Bellman que le permita resolver el problema mediante programación dinámica.
+
+\item Escriba el código de su implementación de la solución del problema.
+\item Utilice su implementación para resolver el problema en el grafo con matriz de adyacencia
+\[
+\begin{array}{c|cccccc}
+    & A & B & C & D & E & F \\
+\hline
+A & 0 & 4 & 1 & 3 & \infty & \infty \\
+B & \infty & 0 & 2 & \infty & 5 & \infty \\
+C & \infty & \infty & 0 & 8 & 7 & \infty \\
+D & \infty & \infty & \infty & 0 & 2 & 4 \\
+E & \infty & \infty & \infty & \infty & 0 & 6 \\
+F & \infty & \infty & \infty & \infty & \infty & 0 \\
+\end{array}
+\]
+\end{enumerate}
+
+
+\item ({\it Árboles de búsqueda óptimos}) Tenemos una lista de items $1,2,\dots, n$ con frecuencias respectivas de búsqueda $p_1,\dots, p_n$.
+\begin{enumerate}
+\item Escriba formalmente el problema de optimización que quiere resolverse para encontrar un \emph{\'arbol de b\'usqueda \'optimo}.
+\item Sea $W_{i,j}$ el tiempo esperado (weighted time) de búsqueda de un árbol binario óptimo de los items $\{i,i+1,\dots, j\}$ con frecuencias respectivas de búsqueda $p_i,p_{i+1},\dots, p_j$. Encuentre la recursión de Bellman que satiface $W_{i,j}$ justificando detalladamente su respuesta.
+\item Escriba su implementación de un algoritmo que calcule los valores $W_{ij}$ de manera recursiva.
+\item Utilice su implementación para calcular el tiempo esperado de búsqueda y para encontrar el árbol óptimo para los siguientes siete items. Escriba los resultados intermedios utilizados en la evaluación de $W_{ij}$.
+\begin{center}
+\begin{tabular}{c|c}
+item & Frecuencia\\
+1 & 20\\
+2 & 5\\
+3 & 17\\
+4 & 10\\
+5 & 20\\
+6 & 3\\
+7 & 25\\
+\end{tabular}
+\end{center}
+\item Cuántos árboles binarios (no necesariamente balanceados) posibles hay en $7$ items?
+
+\end{enumerate}
+
+\item ({\it Aplicando $A^*$ a mano}) Considere el grafo con vértices $A,B,C,D,E,G$ con vértice de inicio $s=A$, vértice de salida $t=G$ y aristas dadas por la siguiente tabla:
+\begin{center}
+\begin{tabular}{c|c}
+Arista & Peso\\
+(A,B) & 1\\
+(A,C) & 3\\
+(B,C) & 3\\
+(B,D) & 4\\
+(C,E) & 1\\
+(D,G) & 5\\
+(E,G) & 2\\
+\end{tabular}
+\end{center}
+En los siguientes ejercicios deberá ejecutar diferentes versiones del algoritmo $A^*$ en este grafo a mano. Debe escribir los valores de $X,Q$ $\phi$ y ${\rm prev}$ en cada uno de los ciclos de ejecución. No olvide dibujar el árbol de búsqueda tal como hicimos en clase.
+
+\begin{enumerate}
+\item Ejecute el algoritmo de Dijkstra (es decir $A^*$ con la heurística $h=0$).
+\item Ejecute el algoritmo $A^*$ con la heurística
+\[h(v)=\begin{cases}
+4\text{, si $v=D$}\\
+0\text{, de lo contrario}
+\end{cases}
+\]
+\item Defina {\it heurística admisible} y demuestre que la heurística del numeral anterior es admisible.
+\item Ejecute el algoritmo $A^*$ a  con la heurística
+\[h(v)=\begin{cases}
+100\text{, si $v=C$}\\
+0\text{, de lo contrario}
+\end{cases}
+\]
+\item Es la heurística del numeral anterior admisible? Justifique su respuesta.
+\end{enumerate}
+
+\item Suponga que alguien nos dá la heurística perfecta, es decir $\overline{h}(v)$ es exáctamente igual al mínimo costo de un camino que sale de $v$ y llega a algún vértice de salida. Cómo se comporta el algoritmo de $A^*$ con la heurística $\overline{h}(v)$? Justifique rigurosamente su respuesta. 
+
+
+\end{enumerate}
+\end{document}
+
+
