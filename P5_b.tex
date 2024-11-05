@@ -1,0 +1,118 @@
+
+\documentclass[12pt, a4paper]{article}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=cyan,
+}
+\urlstyle{same}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+\newtheorem{theorem}{Teorema.}
+\newtheorem{lemma}[theorem]{Lema.}
+\newtheorem{corollary}[theorem]{Corolario.}
+\newtheorem{definition}[theorem]{Definici\'on:}
+\newtheorem{example}[theorem]{Ejemplo:}
+\newtheorem{problema}[theorem]{Problema:}
+\newtheorem{remark}[theorem]{Observaci\'on:}
+
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+%\usetheme{default}
+
+\newcommand{\pp}{\mathbb{P}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\qq}{\mathbb{Q}}
+
+\usepackage{tikz, tikz-3dplot}
+
+\definecolor{cof}{RGB}{219,144,71}
+\definecolor{pur}{RGB}{186,146,162}
+\definecolor{greeo}{RGB}{91,173,69}
+\definecolor{greet}{RGB}{52,111,72}
+
+\date{}
+
+\begin{document}
+\title{Pr\'actico ALGOBO: Búsqueda, Branch-and-bound y algoritmos genéticos.}
+\author{Mauricio Velasco}
+\maketitle{}
+\begin{enumerate}
+\item({\it Caníbales y Misionarios [Amarel, 1968]}) Tres misionarios y tres caníbales estan en la orilla sur de un río y quieren llegar a la orilla norte. Para cruzar tienen a su disposición un único barco capaz de llevar a lo más dos personas. Adicionalmente, el juego tiene las siguientes reglas:
+\begin{enumerate}
+\item Los caníbales se comerán a los misionarios si en cualquiera de las dos orillas del río hay más caníbales que misionarios.
+\item El bote no puede cruzar el río sin un piloto.
+\end{enumerate}
+Encuentre una estrategia que permita transportar a los seis de un lado al otro del río de manera segura, resolviéndolo como un algoritmo de búsqueda.
+
+\begin{enumerate}
+\item Describa el espacio de estados.
+\item Describa las decisiones válidas para cada estado.
+\item Escriba su implementación de un algoritmo de búsqueda para resolver este problema (aclarando las estructuras de datos que usa para representar estados y decisiones y el formato en el que su algoritmo expresará la respuesta). 
+\item Escriba la colección de decisiones óptimas que encontró al ejecutar su algoritmo.
+\end{enumerate}
+
+
+\item ({\it Programación entera})  Resuelva el siguiente problema:
+\[
+\text{Minimizar } -x_1+x_2
+\]
+sujeto a las restricciones: 
+\[
+\begin{aligned}
+12x_1+11x_2 &\leq 63, \\
+-22x_1+4x_2 &\leq -33, \\
+x_1, x_2 &\geq 0, \\
+x_1, x_2 &\in \mathbb{Z}.
+\end{aligned}
+\]
+llevando a cabo los siguientes pasos
+
+\begin{enumerate}
+\item En el plano $x_1,x_2$ Dibuje la región factible dada por
+\[
+\begin{aligned}
+12x_1+11x_2 &\leq 63, \\
+-22x_1+4x_2 &\leq -33, \\
+x_1, x_2 &\geq 0, \\
+\end{aligned}
+\]
+y en su interior marque los puntos con coordenadas enteras. Viendo su dibujo, cuál es el valor óptimo del problema?
+
+\item Ahora resuelva el problema mediante Branch-and-Bound. Debe:
+\begin{enumerate}
+\item Dibujar el árbol de exploración. En cada nodo debe aclarar cuál es el problema del nodo, calcular un upper bound mediante programación lineal y un lower bound (cualquiera de los bounds puede ser $\pm \infty$ reflejando que no se tiene información ó que el problema es infactible). 
+\item Para calcular las cotas superiores debe adaptar el código en python que vimos en clase para resolver problemas de optimización lineal.
+\item Debe justificar cuándo se detiene el branch-and-bound y cómo el algoritmo garantiza haber alcanzado una solución óptima.
+
+\end{enumerate}
+
+ 
+\end{enumerate}
+
+
+
+
+
+
+\item ({\it Un algoritmo genético innecesario}) Sea $X$ el conjunto de cadenas binarias de longitud $5$. Cada cadena de estas es la representación binaria de un número entero entre $0$ y $32$ inclusive. Sea $f(x)=x^3$. Usaremos algoritmos genéticos para maximizar la función $f$ en el conjunto $X$.
+\begin{enumerate}
+\item Escriba el código de un algoritmo genético que intente maximizar la función $f(x)$ para $x\in X$. Su código debe incluir funciones de \verb!reproducción!, de \verb!cross-over! y de \verb!mutación! donde la última depende de una probabilidad de mutación $q$ a ser especificada por el usuario.  
+
+\item Construya una población inicial aleatoria $I_0$ de $4$ cadenas. Ejecute su algortimo un total de $10$ pasos y produzca una sola imagen con las gráficas de los valores mínimo, promedio y máximo de la función objetivo en su población (el eje $x$ de su dibujo es el tiempo y el eje $y$ las unidades de la función objetivo y debe contener tres curvas, la del mínimo, la del promedio y la del máximo).
+
+\item Recalcule el dibujo de la parte $(b)$ quitandole a su algoritmo la fase de \verb!cross-over!. Como cambian sus resultados?
+
+\item Recalcule el dibujo de la parte $(b)$ quitandole a su algoritmo la fase de \verb!mutación!. Como cambian sus resultados?
+
+\end{enumerate}
+ 
+\end{enumerate}
+\end{document}
